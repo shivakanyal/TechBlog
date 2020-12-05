@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333
+}
+.list{
+    display: flex;
+}
+
+.list-item{
+    list-style: none;
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.list-item a, .logout-button{
+    display: block;
+    padding: 5px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff ;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: background-color .4s;
+}
+.logout-button{
+    background:none;
+    border: none;
+}
+
+.list-item a:hover , .logout-button:hover{
+    background-color: #fff;
+    color: #000;;
+}
+

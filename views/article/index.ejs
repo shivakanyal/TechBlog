@@ -1,0 +1,23 @@
+<%- include('../includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/navigation.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="index-container">
+    <h1 class="heading-1">Welcome to blog World</h1>
+    <p class="main-para">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur corrupti ipsa totam qui nostrum exercitationem quisquam tempore ducimus quia suscipit?</p>
+    <div class="btn-box">
+      <% if(!isAuthenticate){ %>
+          <a href="/login" class="btn btn-login">login</a>
+          <a href="/signup" class="btn btn-signup">signup</a>
+      <% }else{ %> 
+        <a href="/add-article" class="btn btn-login">CreateArticle</a>
+        <a href="/articles" class="btn btn-signup">MyArticles</a>  
+      <% } %> 
+    </div>
+    </div>
+</body>

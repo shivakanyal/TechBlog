@@ -1,0 +1,45 @@
+<header>
+    <nav class="navbar">
+        <ul class="list">
+            <li class="list-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="list-item">
+                <a href="/all-articles">All Articles</a>
+            </li>
+            <% if(isAuthenticate){ %>
+            <li class="list-item">
+                <a href="/articles">
+                    MyArticles
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="/add-article">
+                    CreateArticle
+                </a>
+            </li>
+        <% } %> 
+        </ul>
+
+        <ul class="list">
+            <% if(!isAuthenticate){ %> 
+            <li class="list-item">
+                <a href="/signup">
+                    signup
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="/login">
+                    login
+                </a>
+            </li>
+            <% } else{%>
+            <li class="list-item">
+               <form action="/logout" method="POST">
+                <button type="submit" class="logout-button" >logout</button>
+            </form>
+            </li>
+            <% } %> 
+        </ul>
+    </nav>
+</header>

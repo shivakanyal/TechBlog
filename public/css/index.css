@@ -1,0 +1,48 @@
+body{
+    height: 100vh;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.56),rgba(0, 0, 0, 0.4)), url('../img/index-background-2.jpg') ;
+    background-position: center;
+    background-size: cover;
+}
+
+.index-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+    width: 70%;
+    /* height: 50%; */
+    margin: auto;
+    margin-top: 12rem;
+}
+.index-container >*{
+    margin-bottom: 2rem;
+}
+.heading-1{
+    text-align: center;
+    color: #fff;
+    font-size: 4rem;
+}
+.main-para{
+    text-align: center;
+    color: #fff;
+    font-size: 1.5rem;
+}
+.btn{
+    font-size: 1rem;
+    padding: 10px 15px ;
+    border: 2px solid #5cb6eb;
+    text-decoration: none;
+}
+.btn-login{
+    color: #00ffea;
+    background: transparent;
+}
+.btn-login:hover{
+    color: #fff;
+    background: #00ffea;
+}
+.btn-signup:hover{
+    color: #fff;
+    background: #00ffeacb;
+}

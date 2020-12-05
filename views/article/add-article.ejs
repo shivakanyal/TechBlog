@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/navigation.css">
+</head>
+<link rel="stylesheet" href="/css/main.css">
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <form <%if(editing){%> action="/edit-article" <% }else{ %> action="/add-article" <% } %> class="article-form"
+        method="POST" enctype="multipart/form-data">
+        <div class="form-control">
+            <% if (errorMessage) { %>
+            <p class="flash-message flash-message--error" style="margin: 0;"><%= errorMessage %></p>
+            <% } %>
+            <input
+             class=<%= validationErrors.find(e => e.param ==='title') ? 'invalid':'' %> 
+             type="text"
+             name="title" 
+             id="title"
+             placeholder="title"
+             value="<% if (editing || hasError) { %><%= article.title %><% } %>"
+             >
+
+             <textarea
+              name="description" 
+              id="description"
+              rows="5" 
+              placeholder="description"
+              class="<%= validationErrors.find(e => e.param ==='description' ) ? 'invalid':'' %> "
+             ><% if (editing || hasError) { %> <%= article.description %><% }  %></textarea>
+         
+             <input type="file" name="image" id="image" >
+           
+            <% if (editing) { %>
+            <input type="hidden" value="<%= article._id %>" name="articleId">
+            <% } %>
+            <button class="btn btn-submit" type="submit"><% if (editing) { %>Update Article<% } else { %>Add
+                Article<% } %></button>
+        </div>
+    </form>
+
+    <!-- <a href="/add-article?page=1">click</a> -->
+</body>

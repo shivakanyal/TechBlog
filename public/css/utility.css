@@ -1,0 +1,11 @@
+.u-center{
+    text-align: center;
+}
+.mg-bt{
+    margin-bottom: 30px;
+}
+.bo-bt{
+    width: fit-content;
+    border-bottom: 3px solid #555;
+    margin: auto;
+}

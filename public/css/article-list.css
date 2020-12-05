@@ -1,0 +1,19 @@
+.article-container{
+    max-width: 600px;
+    border: 1px solid #444;
+    /* padding: 10px; */
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.article-container:not(:last-child) {
+    padding: 10px;
+}
+
+.article-title{
+margin-bottom: 8px;
+
+}
+.article-description{
+    color: #333;
+    margin-bottom: 20px;
+}

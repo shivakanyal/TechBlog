@@ -1,0 +1,26 @@
+<%- include('../includes/head.ejs') %> 
+<link rel="stylesheet" href="/css/navigation.css">
+<link rel="stylesheet" href="/css/auth.css">
+<link rel="stylesheet" href="/css/utility.css">
+<link rel="stylesheet" href="/css/main.css">
+<body>
+    <%- include('../includes/navigation.ejs')%>
+    
+    <% if (errorMessage) { %>
+        <p class="flash-message flash-message--error"><%= errorMessage %></p>
+       <% } %>
+   
+    <div class="signing-box">
+        <h1 class="u-center mg-bt bo-bt"> Signup </h1>
+
+    <form class="signing-form" action="/signup" method="post">
+
+        <input type="email" name="email" id="emial" placeholder="email">
+
+        <input type="password" name="password" id="password" placeholder="password">
+    
+        <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password">
+    
+        <button class="btn btn-submit">submit</button>
+    </form>
+    </div>
