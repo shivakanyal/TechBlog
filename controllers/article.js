@@ -1,9 +1,11 @@
 const {validationResult} = require('express-validator')
 const Article = require('../models/article');
 
+const fileHelper = require('../util/file')
+
 exports.getMyArticles = async (req,res,next) =>{
     try{
-    const articles = await Article.find()
+    const articles = await Article.find().sort({'createdAt':-1})
 
     const userId = req.session.userId;
 
@@ -22,7 +24,7 @@ exports.getMyArticles = async (req,res,next) =>{
 
 exports.getAllArticles = async (req,res,next) =>{
     try {
-        const articles = await Article.find()
+        const articles = await Article.find().sort({'createdAt':-1});
         if(!articles){
             const err = new Error('Article not found')
             throw err
@@ -122,9 +124,7 @@ exports.postEditArticle = async (req,res,next) =>{
         const updatedTitle = req.body.title;
         const updatedDes = req.body.description;
         const image = req.file;
-        if(req.file){
-            const imageUrl = req.file.path;
-        }
+        
         const articleId = req.body.articleId;
         
         const article = await Article.findById(articleId)
@@ -136,6 +136,7 @@ exports.postEditArticle = async (req,res,next) =>{
         article.title = updatedTitle;
         article.description = updatedDes;
         if(image){
+            fileHelper.deleteFile(article.imageUrl)
             article.imageUrl = req.file.path;
         }
         const errors = validationResult(req);
@@ -163,7 +164,16 @@ exports.postEditArticle = async (req,res,next) =>{
 exports.postDeleteArticle = async (req,res,next) =>{
     try {
         const articleId = req.body.articleId;
-        await Article.findByIdAndDelete(articleId);
+        const article = await Article.findById(articleId);
+        if(!article){
+            const error = new Error('article not found');
+            error.statusCode = 404;
+            throw error;
+        }
+        else{
+           await  Article.deleteOne(article);
+           fileHelper.deleteFile(article.imageUrl)
+        }
         res.redirect('/articles')
     } catch (error) {
         next(err);
