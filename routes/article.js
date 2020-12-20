@@ -26,8 +26,6 @@ router.post('/add-article',
     ]
     ,isAuth,articleController.postAddArticle);
 
-
-
 router.get('/edit-article/:articleId',isAuth,articleController.getEditArticle)
 
 router.post('/edit-article',isAuth,articleController.postEditArticle)
@@ -35,10 +33,5 @@ router.post('/edit-article',isAuth,articleController.postEditArticle)
 router.post('/delete-article',isAuth,articleController.postDeleteArticle)
 
 router.get('/',articleController.getIndex);
-
-router.get('/initializedMaps',articleController.initializedMaps);
-
-router.post('/saveLikes',articleController.saveLikes);
-
 
 module.exports = router;

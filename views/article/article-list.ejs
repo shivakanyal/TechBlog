@@ -1,48 +1,65 @@
-<%- include('../includes/head.ejs') %> 
-<link rel="stylesheet" href="/css/navigation.css">
-<link rel="stylesheet" href="/css/article-list.css">
-<link rel="stylesheet" href="/css/main.css">
-</head>
-<body>
-    
-    <%- include('../includes/navigation.ejs') %> 
-    
-<% if(articles.length >0){ %> 
-    <% articles.forEach(article => { %>
-    <div class="article-container centered">
-        <h1 class="article-title"><%= article.title%></h1>
-        <img src="/<%=article.imageUrl%>" alt="image" width="100%" height="auto">
-    <p class="article-description"><%= article.description%> </p>
-    
-        <% if(isAuthenticate && myArticles ){ %> 
-        
-        <a href="/edit-article/<%=article.id%>" class="btn btn-edit">edit</a>
-   
-        <form action="/delete-article" class="inline" method="post">
-            <input type="hidden" value="<%= article._id %>" name="articleId">     
-            <button class="btn btn-delete border-none" type="submit">delete</button>
-        </form>
-        <% } %> 
-        <% if(!myArticles && isAuthenticate){ %>
-            <div>
-                <button class="btn btn-submit btn-simple like-button" data-likesid=<%=article.id%> >like</button>  
-                <button class="btn btn-submit btn-simple dislike-button" data-dislikesid=<%= article.id+'d'  %>  >Dislike</button>  
-                <div class="likes-box">
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/article-list.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+
+        <%- include('../includes/navigation.ejs') %>
+            <% str='' %>
+                <% if(articles.length>0){ %>
+                    <% articles.forEach(article=> { %>
+                        <div class="article-container centered">
+                            <h1 class="article-title">
+                                <%= article.title%>
+                            </h1>
+                            <img src="/<%=article.imageUrl%>" alt="image" width="100%" height="auto">
+
+                            <% if (article.description.length>400) { %>
+                                <input type="hidden" value="<%= article.description.substr(0,400) %> "
+                                    class="article-less">
+                                <input type="hidden" value="<%= article.description %> " class="article-full">
+                                <p class="article-description">
+                                    <%= article.description.substr(0,200)+'...' %>
+                                </p>
+                                <button class="read-more btn blur-effect" data-article="<%=article.description%> "
+                                    style="display: block; margin: auto;" value="<%= article.description  %> ">Read More</button>
+                                <% } else {%>
+
+                                    <p class="article-description">
+                                        <%= article.description%>
+                                    </p>
+                                    <% } %>
+                                        <% if(isAuthenticate && myArticles ){ %>
+
+                                            <a href="/edit-article/<%=article.id%>" class="btn btn-edit">edit</a>
+
+                                            <form action="/delete-article" class="inline" method="post">
+                                                <input type="hidden" value="<%= article._id %>" name="articleId">
+                                                <button class="btn btn-delete border-none" type="submit">delete</button>
+                                            </form>
+                                            <% } %>
+                                                <% if(!myArticles && isAuthenticate){ %>
+                                                    <div>
+                                                        <!-- <button class="btn btn-submit btn-simple like-button" data-likesid=<%=article.id%> >like</button>  
+                <button class="btn btn-submit btn-simple dislike-button" data-dislikesid=<%= article.id+'d'  %>  >Dislike</button>   -->
+                                                        <!-- <div class="likes-box">
                     <span id="likes">0 likes</span>
                     <span id="dislikes">0 dislikes</span>
-                </div>
-                <form action="/post-comment" class="form-comment">
+                </div> -->
+                                                        <!-- <form action="/post-comment" class="form-comment">
                     <input type="text" class="comment-box"  placeholder="Add a comment...">
                     <button type="submit btn btn-submit">Post</button>
-                </form>
-            </div>
-        <% } %> 
-    </div> 
-    
-<% }) %>
-<% } else{ %>
-    <h1>No article to Show</h1>
-<% } %>  
+                </form> -->
+                                                    </div>
+                                                    <% } %>
+                        </div>
 
-<script src="/js/index.js"></script>
-</body>
+                        <% }) %>
+                            <% } else{ %>
+                                <h1>No article to Show</h1>
+                                <% } %>
+
+                                    <script src="/js/index.js"></script>
+    </body>

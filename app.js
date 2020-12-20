@@ -36,8 +36,9 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const articleRoutes = require('/Users/hp/Desktop/BlogWorld/routes/article');
-// const articleRoutes = require('./routes/article')
+
+// const articleRoutes = require('/Users/hp/Desktop/BlogWorld/routes/article');
+const articleRoutes = require('./routes/article')
 const authRoutes = require('./routes/auth')
 
 app.use(express.static(path.join(__dirname,'public')));

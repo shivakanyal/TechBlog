@@ -180,39 +180,17 @@ exports.postDeleteArticle = async (req,res,next) =>{
     }   
 }
 
-// exports.getIndex = async (req,res,next) =>{
-//     try {
-//         res.render('article/index',{
-//             pageTitlle:'Index',
-//             isAuthenticate:req.session.isLoggedIn
-//         })
-//     } catch (error) {
-//         next(error);
-//     }
-// }
-
 exports.getIndex = (req,res,next) =>{
-  try{
-    //   console.log(__dirname,__filename);
-    // console.log('hello how are you?')
-    res.render('article/index',{
-        pageTitle:'Index',
-        isAuthenticate:req.session.isLoggedIn
-    })
-  }catch(err){
-      console.log('am i running ?')
-    console.log(err)
-  }
+     try {
+        res.render('article/index',{
+            pageTitle:'home',
+            isAuthenticate:req.session.isLoggedIn,
+            errorMessage:'',
+            validationErrors:[],
+            hasError:false
+        })
+     } catch (error) {
+         next(error)
+     }
 }
 
-exports.initializedMaps = async(req,res,next) =>{
-    const article = await Article.find();
-    res.json({
-        articles:articles
-    })
-}
-
-exports.saveLikes = async (req,res,next) =>{
-    const likes = req.body.likes;
-    console.log(likes);
-}
